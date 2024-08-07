@@ -24,6 +24,8 @@
     "next-sitemap": "^4.2.2",
     "nextjs-toploader": "^1.4.2",
     "nodemailer": "^6.9.4",
+    "posthog-js": "^1.154.5",
+    "posthog-node": "^4.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",

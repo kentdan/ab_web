@@ -1,11 +1,5 @@
 import config from "@/config";
 import ButtonCheckout from "./ButtonCheckout";
-// const isMyFlagEnabledForUser = await client.isFeatureEnabled('interest-rate', 'user distinct id')
-
-// if (isMyFlagEnabledForUser) {
-//   // Do something differently for this user
-// }
-
 
 // Sample plans array. This can be moved to a separate config file or fetched from an API.
 const plans = [
@@ -13,11 +7,11 @@ const plans = [
     priceId: process.env.NODE_ENV === "development" ? "price_3Niyy5AxyNprDp7iZIqEyD2h" : "price_3",
     name: "3 months plan",
     description: "with small interest rate",
-    price: 0,
+    price: 0.8,
     priceAnchor: 2.4,
     features: [
-      { name: "Total Amount 200000 NTD" },
-      { name: `${(200000 / 3).toFixed(2)} /month` },
+      { name: `Total amount: ${(200000 * 1.008).toFixed(2)}` },
+      { name: `${(200000 * 1.008 / 3).toFixed(2)} /month` },
     ],
   },
   {
@@ -45,7 +39,6 @@ const plans = [
     ],
   },
 ];
-
 
 const planb = [
   {
@@ -137,7 +130,7 @@ const PlanCard = ({ plan }) => (
 );
 
 // Pricing Component
-const Pricing = () => (
+const Pricing3 = () => (
   <section className="bg-base-200 overflow-hidden" id="pricing">
     <div className="py-24 px-8 max-w-5xl mx-auto">
       <div className="flex flex-col text-center w-full mb-20">
@@ -154,4 +147,4 @@ const Pricing = () => (
   </section>
 );
 
-export default Pricing;
+export default Pricing3;

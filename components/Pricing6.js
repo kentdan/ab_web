@@ -1,40 +1,34 @@
 import config from "@/config";
 import ButtonCheckout from "./ButtonCheckout";
-// const isMyFlagEnabledForUser = await client.isFeatureEnabled('interest-rate', 'user distinct id')
-
-// if (isMyFlagEnabledForUser) {
-//   // Do something differently for this user
-// }
-
 
 // Sample plans array. This can be moved to a separate config file or fetched from an API.
 const plans = [
   {
-    priceId: process.env.NODE_ENV === "development" ? "price_3Niyy5AxyNprDp7iZIqEyD2h" : "price_3",
+    priceId: process.env.NODE_ENV === "development" ? "price_1Niyy5AxyNprDp7iZIqEyD2h" : "price_456",
     name: "3 months plan",
     description: "with small interest rate",
     price: 0,
     priceAnchor: 2.4,
     features: [
-      { name: "Total Amount 200000 NTD" },
-      { name: `${(200000 / 3).toFixed(2)} /month` },
+      { name: `Total amount: ${(200000 * 1.000).toFixed(2)}` },
+      { name: `${(200000 * 1.000 / 3).toFixed(2)} /month` },
     ],
   },
   {
     isFeatured: true,
-    priceId: process.env.NODE_ENV === "development" ? "price_6O5KtcAxyNprDp7iftKnrrpw" : "price_6",
+    priceId: process.env.NODE_ENV === "development" ? "price_1O5KtcAxyNprDp7iftKnrrpw" : "price_456",
     name: "6 months plan",
     description: "most popular",
-    price: 1.2,
+    price: 2.2,
     priceAnchor: 3.3,
     features: [
-      { name: `Total amount: ${(200000 * 1.012).toFixed(2)}` },
-      { name: `${(200000 * 1.012 / 6).toFixed(2)} /month` },
+      { name: `Total amount: ${(200000 * 1.022).toFixed(2)}` },
+      { name: `${(200000 * 1.022 / 6).toFixed(2)} /month` },
     ],
   },
   {
     isFeatured: true,
-    priceId: process.env.NODE_ENV === "development" ? "price_12O5KtcAxyNprDp7iftKnrrpw" : "price_12",
+    priceId: process.env.NODE_ENV === "development" ? "price_1O5KtcAxyNprDp7iftKnrrpw" : "price_456",
     name: "12 months plan",
     description: "You need more time",
     price: 2.2,
@@ -46,10 +40,9 @@ const plans = [
   },
 ];
 
-
 const planb = [
   {
-    priceId: process.env.NODE_ENV === "development" ? "price_1Niyy5AxyNprDp7iZIqEyD2h" : "price_456",
+    priceId: process.env.NODE_ENV === "development" ? "price_3Niyy5AxyNprDp7iZIqEyD2h" : "price_3",
     name: "3 months plan",
     description: "with small interest rate",
     price: 0,
@@ -58,7 +51,7 @@ const planb = [
   },
   {
     isFeatured: true,
-    priceId: process.env.NODE_ENV === "development" ? "price_1O5KtcAxyNprDp7iftKnrrpw" : "price_456",
+    priceId: process.env.NODE_ENV === "development" ? "price_6O5KtcAxyNprDp7iftKnrrpw" : "price_6",
     name: "6 months plan",
     description: "most popular",
     price: 1.2,
@@ -66,7 +59,7 @@ const planb = [
   },
   {
     isFeatured: true,
-    priceId: process.env.NODE_ENV === "development" ? "price_1O5KtcAxyNprDp7iftKnrrpw" : "price_456",
+    priceId: process.env.NODE_ENV === "development" ? "price_12O5KtcAxyNprDp7iftKnrrpw" : "price_12",
     name: "12 months plan",
     description: "You need more time",
     price: 2.1,
@@ -137,7 +130,7 @@ const PlanCard = ({ plan }) => (
 );
 
 // Pricing Component
-const Pricing = () => (
+const Pricing6 = () => (
   <section className="bg-base-200 overflow-hidden" id="pricing">
     <div className="py-24 px-8 max-w-5xl mx-auto">
       <div className="flex flex-col text-center w-full mb-20">
@@ -154,4 +147,4 @@ const Pricing = () => (
   </section>
 );
 
-export default Pricing;
+export default Pricing6;
