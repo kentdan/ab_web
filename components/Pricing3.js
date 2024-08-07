@@ -34,7 +34,7 @@ const plans = [
     price: 2.2,
     priceAnchor: 5.4,
     features: [
-      { name: `Total amount: ${(200000 * 1.025).toFixed(2)}` },
+      { name: `Total amount: ${(200000 * 1.022).toFixed(2)}` },
       { name: `${(200000 * 1.025 / 12).toFixed(2)} /month` },
     ],
   },
