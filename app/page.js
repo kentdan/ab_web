@@ -31,55 +31,61 @@ export default function Page() {
   const handleCheckoutClick = () => {
     setShowPricing(true);
   };
-
-  if (featureFlag === 'control') {
-    return (
-      <div>
-        {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
-        <Hero onCheckoutClick={handleCheckoutClick} />
-        {showPricing && <Pricing />}
-      </div>
-    );
-  } else if (featureFlag === 'test_3month_increase') {
-    return (
-      <div>
-        {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
-        <Hero onCheckoutClick={handleCheckoutClick} />
-        {showPricing && <Pricing3 />}
-      </div>
-    );
-  } else if (featureFlag === 'test_6month_increase') {
-    return (
-      <div>
-        {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
-        <Hero onCheckoutClick={handleCheckoutClick} />
-        {showPricing && <Pricing6 />}
-      </div>
-    );
-  } else if (featureFlag === 'test_12month_increase') {
-    return (
-      <div>
-        {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
-        <Hero onCheckoutClick={handleCheckoutClick} />
-        {showPricing && <Pricing12 />}
-      </div>
-    );
-  } else if (featureFlag === 'test_all') {
-    return (
-      <div>
-        {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
-        <Hero onCheckoutClick={handleCheckoutClick} />
-        {showPricing && <PricingAll />}
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
-        <Hero onCheckoutClick={handleCheckoutClick} />
-        {showPricing && <Pricing />}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
+      <Hero onCheckoutClick={handleCheckoutClick} />
+      {showPricing && <Pricing />}
+    </div>
+  );
+  // if (featureFlag === 'control') {
+  //   return (
+  //     <div>
+  //       {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
+  //       <Hero onCheckoutClick={handleCheckoutClick} />
+  //       {showPricing && <Pricing />}
+  //     </div>
+  //   );
+  // } else if (featureFlag === 'test_3month_increase') {
+  //   return (
+  //     <div>
+  //       {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
+  //       <Hero onCheckoutClick={handleCheckoutClick} />
+  //       {showPricing && <Pricing3 />}
+  //     </div>
+  //   );
+  // } else if (featureFlag === 'test_6month_increase') {
+  //   return (
+  //     <div>
+  //       {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
+  //       <Hero onCheckoutClick={handleCheckoutClick} />
+  //       {showPricing && <Pricing6 />}
+  //     </div>
+  //   );
+  // } else if (featureFlag === 'test_12month_increase') {
+  //   return (
+  //     <div>
+  //       {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
+  //       <Hero onCheckoutClick={handleCheckoutClick} />
+  //       {showPricing && <Pricing12 />}
+  //     </div>
+  //   );
+  // } else if (featureFlag === 'test_all') {
+  //   return (
+  //     <div>
+  //       {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
+  //       <Hero onCheckoutClick={handleCheckoutClick} />
+  //       {showPricing && <PricingAll />}
+  //     </div>
+  //   );
+  // } else {
+  //   return (
+  //     <div>
+  //       {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
+  //       <Hero onCheckoutClick={handleCheckoutClick} />
+  //       {showPricing && <Pricing />}
+  //     </div>
+  //   );
+  // }
 
 }
