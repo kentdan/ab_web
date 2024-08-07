@@ -8,85 +8,35 @@ import Pricing3 from "@/components/Pricing3";
 import Pricing6 from "@/components/Pricing6";
 import Pricing12 from "@/components/Pricing12";
 import PricingAll from "@/components/PricingAll";
+import { posthog } from "posthog-js";
+// Initialize PostHog
+// const posthog = initializePostHog();
 
-// export default function Page() {
-//   const [showPricing, setShowPricing] = useState(false);
-//   const [flags, setFlags] = useState({});
-//   const [featureFlag, setFeatureFlag] = useState(null);
+// Randomly assign to one of the variants
+const variants = ['control', 'test_3month_increase', 'test_6month_increase', 'test_12month_increase', 'test_all'];
+const variant = variants[Math.floor(Math.random() * variants.length)];
 
-//   useEffect(() => {
-//     const posthog = initializePostHog();
-
-//     async function fetchData() {
-//       const flags = await posthog.getFeatureFlag('interest-rate');
-//       setFlags(flags);
-
-//       const flag = posthog.getFeatureFlag('interest');
-//       setFeatureFlag(flag);
-//     }
-
-//     fetchData();
-//   }, []);
-
-//   const handleCheckoutClick = () => {
-//     setShowPricing(true);
-//   };
-
-//   if (featureFlag === 'control') {
-//     return (
-//       <div>
-//         {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
-//         <Hero onCheckoutClick={handleCheckoutClick} />
-//         {showPricing && <Pricing />}
-//       </div>
-//     );
-//   } else if (featureFlag === 'test_3month_increase') {
-//     return (
-//       <div>
-//         {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
-//         <Hero onCheckoutClick={handleCheckoutClick} />
-//         {showPricing && <Pricing3 />}
-//       </div>
-//     );
-//   } else if (featureFlag === 'test_6month_increase') {
-//     return (
-//       <div>
-//         {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
-//         <Hero onCheckoutClick={handleCheckoutClick} />
-//         {showPricing && <Pricing6 />}
-//       </div>
-//     );
-//   } else if (featureFlag === 'test_12month_increase') {
-//     return (
-//       <div>
-//         {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
-//         <Hero onCheckoutClick={handleCheckoutClick} />
-//         {showPricing && <Pricing12 />}
-//       </div>
-//     );
-//   } else if (featureFlag === 'test_all') {
-//     return (
-//       <div>
-//         {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
-//         <Hero onCheckoutClick={handleCheckoutClick} />
-//         {showPricing && <PricingAll />}
-//       </div>
-//     );
-//   } else {
-//     return (
-//       <div>
-//         {flags['interest-rate'] && <p>Interest rate: {flags['interest-rate']}</p>}
-//         <Hero onCheckoutClick={handleCheckoutClick} />
-//         {showPricing && <Pricing />}
-//       </div>
-//     );
-//   }
-
-// }
-
+// Capture the page view event with the variant
+posthog.capture('page_view', {
+  variant: variant,
+});
 
 export default function Page() {
   const [showPricing, setShowPricing] = useState(false);
+  const [flags, setFlags] = useState({});
+  const [featureFlag, setFeatureFlag] = useState(variant); // Set featureFlag based on the assigned variant
+
+  useEffect(() => {
+    async function fetchData() {
+      // Fetch feature flags from PostHog
+      const flags = await posthog.getFeatureFlag('interest');
+      setFlags(flags);
+
+      // You can set additional flags here if needed
+    }
+
+    fetchData();
+  }, []);
 
   const handleCheckoutClick = () => {
     setShowPricing(true);
@@ -94,8 +44,34 @@ export default function Page() {
 
   return (
     <div>
+      {flags['interest'] && <p>Interest rate: {flags['interest']}</p>}
       <Hero onCheckoutClick={handleCheckoutClick} />
-      {showPricing && <Pricing />}
+      {showPricing && (
+        <>
+          {featureFlag === 'control' && <Pricing />}
+          {featureFlag === 'test_3month_increase' && <Pricing3 />}
+          {featureFlag === 'test_6month_increase' && <Pricing6 />}
+          {featureFlag === 'test_12month_increase' && <Pricing12 />}
+          {featureFlag === 'test_all' && <PricingAll />}
+        </>
+      )}
     </div>
   );
 }
+
+
+
+// export default function Page() {
+//   const [showPricing, setShowPricing] = useState(false);
+
+//   const handleCheckoutClick = () => {
+//     setShowPricing(true);
+//   };
+
+//   return (
+//     <div>
+//       <Hero onCheckoutClick={handleCheckoutClick} />
+//       {showPricing && <Pricing />}
+//     </div>
+//   );
+// }
